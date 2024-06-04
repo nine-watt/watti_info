@@ -3,7 +3,6 @@ import {
   Btn,
   CenterArea,
   NavRow,
-  PrimaryColor,
   Section1,
   Article1,
   Section1Row,
@@ -42,6 +41,7 @@ import Exam2 from "../assets/watti_exam2.png";
 import Exam3 from "../assets/watti_exam3.png";
 import Logo2 from "../assets/ninewatt_logo.png";
 import Logo3 from "../assets/watti_grey_logo.png";
+import { useEffect, useRef, useState } from "react";
 
 const CheckSvg = () => {
   return (
@@ -58,17 +58,53 @@ const CheckSvg = () => {
 };
 
 const WattiPage = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = {
+    step1: useRef(null),
+    step2: useRef(null),
+  };
+
+  const handleScroll = () => {
+    const steps = ["step1", "step2"];
+    const currentScroll = window.scrollTop;
+
+    for (let i = steps.length - 1; i >= 0; i--) {
+      const step = stepRefs[steps[i]].current;
+      if (step && currentScroll >= step.offsetTop - 70 - 600) {
+        setActiveStep(steps[i]);
+        break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (window) window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleNavClick = (stepId) => {
+    const currentStep = stepRefs[stepId].current;
+    const firstStep = stepRefs["step1"].current;
+    if (currentStep) {
+      console.log(currentStep.offsetTop - firstStep.offsetTop);
+      window.scrollTo({ top: currentStep.offsetTop - firstStep.offsetTop, behavior: 'smooth' });
+    }
+  };
+
   return (
     <Body>
       <TitleBg />
-      <TitleArea>
+      <TitleArea ref={stepRefs["step1"]}>
         <TopNav>
           <WattiLogo src={Logo} alt="" />
           <NavRow>
-            <div>
-              <PrimaryColor>Home</PrimaryColor>
+            <div style={activeStep === 0 ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step1")}>
+              Home
             </div>
-            <div>Case studies</div>
+            <div style={activeStep === 1 ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step2")}>
+              Case studies
+            </div>
             <div>Language</div>
           </NavRow>
         </TopNav>
@@ -80,7 +116,7 @@ const WattiPage = () => {
               3D Map-Based Urban Building <br /> Energy Analysis Platform
             </div>
             <div style={{ height: "102px" }} />
-            <Btn>
+            <Btn onClick={() => handleNavClick("step2")}>
               <div>Check the case studies</div>
               <div style={{ marginTop: "3px" }}>→</div>
             </Btn>
@@ -117,7 +153,7 @@ const WattiPage = () => {
         <HeaderBtmLogo src={Logo3} alt="" />
       </HeaderBtmNav>
 
-      <Section1>
+      <Section1 ref={stepRefs["step2"]}>
         <Section1Title>Watti's case studies</Section1Title>
         <Section1Row>
           <Thumbnail src={Exam2} alt="" />
@@ -127,7 +163,7 @@ const WattiPage = () => {
               The platform visualizes building energy use and CO2 emissions, offering emission rankings and comparisons across Seoul. It aids Gangnam District's
               carbon neutrality and green remodeling efforts, promoting community sustainability.
             </Article1Content>
-            <Article1Btn>
+            <Article1Btn onClick={() => window.open("https://watti-gangnam.r-e.kr/map")}>
               <div>Check this case</div>
               <div>→</div>
             </Article1Btn>
@@ -141,7 +177,7 @@ const WattiPage = () => {
               renovations. This approach facilitates partnerships with renovation experts, enabling effective renovations that reduce greenhouse gas emissions
               and lower energy costs.
             </Article1Content>
-            <Article1Btn>
+            <Article1Btn onClick={() => window.open("https://greenplanner-paris.kro.kr/")}>
               <div>Check this case</div>
               <div>→</div>
             </Article1Btn>
@@ -156,7 +192,7 @@ const WattiPage = () => {
               Wattie's Seoul prototype visualizes monthly electricity and gas consumption, identifies buildings with low energy efficiency for green remodeling
               prioritization, and presents comprehensive energy metrics on a 3D map, supported by advanced analysis tools.
             </Article1Content>
-            <Article1Btn>
+            <Article1Btn onClick={() => window.open("https://wattissl3.kro.kr/map/130")}>
               <div>Check this case</div>
               <div>→</div>
             </Article1Btn>
@@ -165,16 +201,16 @@ const WattiPage = () => {
       </Section1>
       <Section2>
         <Section2Title>CONTACT US</Section2Title>
-        <Section2Btn>
+        <Section2Btn href="mailto:ninewatt@ninewatt.com">
           <div>E-mail</div>
           <div style={{ marginTop: "4px" }}>
             <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2 1.5L9.08579 8.58579C9.86683 9.36683 11.1332 9.36684 11.9142 8.58579L19 1.5M2.5 15H18.5C19.0523 15 19.5 14.5523 19.5 14V2C19.5 1.44772 19.0523 1 18.5 1H2.5C1.94772 1 1.5 1.44772 1.5 2V14C1.5 14.5523 1.94772 15 2.5 15Z"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -196,13 +232,13 @@ const WattiPage = () => {
               <div>CASE STUDIES</div>
               <div>CONTACT</div>
             </FooterTableHeader>
-            <FooterTableRow>
+            <FooterTableRow onClick={() => window.open("https://watti-gangnam.r-e.kr/map")}>
               <div>Gangnam-gu</div>
             </FooterTableRow>
-            <FooterTableRow>
+            <FooterTableRow onClick={() => window.open("https://greenplanner-paris.kro.kr/")}>
               <div>Paris</div>
             </FooterTableRow>
-            <FooterTableRow>
+            <FooterTableRow onClick={() => window.open("https://wattissl3.kro.kr/map/130")}>
               <div>Seoul</div>
             </FooterTableRow>
           </FooterTable>

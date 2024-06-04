@@ -74,11 +74,6 @@ export const SubTitle = styled.div`
   letter-spacing: 0px;
 `;
 
-export const PrimaryColor = styled.span`
-  color: #599eab;
-  font-weight: 800;
-`;
-
 export const TitleBg = styled.div`
   position: absolute;
   overflow: hidden;
@@ -212,7 +207,7 @@ export const Section2Title = styled.div`
   z-index: 2;
 `;
 
-export const Section2Btn = styled.div`
+export const Section2Btn = styled.a`
   margin-top: 20px;
   height: 58px;
   width: 220px;
@@ -221,13 +216,14 @@ export const Section2Btn = styled.div`
   align-items: center;
   gap: 15px;
   z-index: 2;
-
+  
   font-size: 16px;
   font-weight: 500;
   color: white;
   border: 1px solid white;
-
+  
   cursor: pointer;
+  text-decoration-line: none;
 `;
 
 export const Footer = styled.div`
@@ -265,11 +261,13 @@ export const FooterTableHeader = styled.div`
 `;
 
 export const FooterTableRow = styled.div`
-  padding-top: 9px;
+  margin-top: 9px;
+  margin-left: 74px;
   display: flex;
-  padding-left: 74px;
   text-align: center;
   color: #aaa;
+
+  cursor: pointer;
 `;
 
 export const FooterNav = styled.div`
