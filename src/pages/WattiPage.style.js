@@ -7,14 +7,20 @@ export const Body = styled.div`
 `;
 
 export const TopNav = styled.div`
-  padding: 4px 11%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 76%;
+  padding: 12px 12% 18px 12%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
+
+  z-index: 10;
 `;
 
 export const WattiLogo = styled.img`
-  height: 46px;
+  height: 40px;
   user-select: none;
 `;
 
@@ -195,7 +201,7 @@ export const Section2 = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.25); // 어두운 배경색
-    z-index: 1; // PIXI 애플리케이션 위에 배치
+    z-index: 0; // PIXI 애플리케이션 위에 배치
   }
 `;
 
@@ -204,7 +210,7 @@ export const Section2Title = styled.div`
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 0px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const Section2Btn = styled.a`
@@ -215,7 +221,7 @@ export const Section2Btn = styled.a`
   justify-content: center;
   align-items: center;
   gap: 15px;
-  z-index: 2;
+  z-index: 1;
   
   font-size: 16px;
   font-weight: 500;
@@ -304,7 +310,7 @@ export const HeaderBtmNavArea = styled.div`
   border-radius: 40px;
   box-shadow: 0 25px 50px -20px rgb(0 0 0 / 0.1);
   background-color: white;
-  z-index: 2;
+  z-index: 1;
 
   display: flex;
   justify-content: center;

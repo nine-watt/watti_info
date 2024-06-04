@@ -58,7 +58,8 @@ const CheckSvg = () => {
 };
 
 const WattiPage = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState("step1");
+  const [isTop, setIsTop] = useState(true);
   const stepRefs = {
     step1: useRef(null),
     step2: useRef(null),
@@ -66,11 +67,13 @@ const WattiPage = () => {
 
   const handleScroll = () => {
     const steps = ["step1", "step2"];
-    const currentScroll = window.scrollTop;
+    const currentScroll = document.documentElement.scrollTop;
+    setIsTop(currentScroll === 0);
 
     for (let i = steps.length - 1; i >= 0; i--) {
       const step = stepRefs[steps[i]].current;
-      if (step && currentScroll >= step.offsetTop - 70 - 600) {
+      if (currentScroll >= step.offsetTop) {
+        console.log(steps[i]);
         setActiveStep(steps[i]);
         break;
       }
@@ -80,7 +83,7 @@ const WattiPage = () => {
   useEffect(() => {
     if (window) window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleNavClick = (stepId) => {
@@ -88,27 +91,26 @@ const WattiPage = () => {
     const firstStep = stepRefs["step1"].current;
     if (currentStep) {
       console.log(currentStep.offsetTop - firstStep.offsetTop);
-      window.scrollTo({ top: currentStep.offsetTop - firstStep.offsetTop, behavior: 'smooth' });
+      window.scrollTo({ top: currentStep.offsetTop - firstStep.offsetTop, behavior: "smooth" });
     }
   };
 
   return (
     <Body>
+      <TopNav style={isTop ? {backgroundColor: "#e4e4e4"} : {backgroundColor: "white"}}>
+        <WattiLogo src={Logo} alt="" />
+        <NavRow>
+          <div style={activeStep === "step1" ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step1")}>
+            Home
+          </div>
+          <div style={activeStep === "step2" ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step2")}>
+            Case studies
+          </div>
+          <div>Language</div>
+        </NavRow>
+      </TopNav>
       <TitleBg />
       <TitleArea ref={stepRefs["step1"]}>
-        <TopNav>
-          <WattiLogo src={Logo} alt="" />
-          <NavRow>
-            <div style={activeStep === 0 ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step1")}>
-              Home
-            </div>
-            <div style={activeStep === 1 ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step2")}>
-              Case studies
-            </div>
-            <div>Language</div>
-          </NavRow>
-        </TopNav>
-
         <CenterArea>
           <TitleHeader>
             <SubTitle>WE ALWAYS LIVE THE CITY</SubTitle>
