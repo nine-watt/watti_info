@@ -79,7 +79,7 @@ const WattiPage = () => {
             <div>
               3D Map-Based Urban Building <br /> Energy Analysis Platform
             </div>
-            <div style={{ height: "105px" }} />
+            <div style={{ height: "102px" }} />
             <Btn>
               <div>Check the case studies</div>
               <div style={{ marginTop: "3px" }}>→</div>
@@ -184,7 +184,7 @@ const WattiPage = () => {
         <FooterColumn>
           <NinewattLogo src={Logo2} alt="" />
           <div>
-            204 Convensia-daero, Yeonsu-gu, Incheon | 21, Baekbeom-ro 31-gil, Mapo-gu, Seoul, Republic of Korea Korean <br />
+            204 Convensia-daero, Yeonsu-gu, Incheon | 21, Baekbeom-ro 31-gil, Mapo-gu, Seoul, Republic of Korea <br />
             EID : 107-88-42750 | NINEWATT Co., Ltd | CEO : YeongRok Kim <br />
             ninewatt@ninewatt.com | 070-1234-2345
           </div>

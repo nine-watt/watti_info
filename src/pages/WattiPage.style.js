@@ -22,8 +22,8 @@ export const NavRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 45px;
-  font-size: 15px;
+  gap: 42px;
+  font-size: 16.5px;
   font-weight: 300;
   padding-bottom: 10px;
   letter-spacing: 0px;
@@ -37,8 +37,8 @@ export const Btn = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
-  height: 58px;
-  width: 250px;
+  height: 60px;
+  width: 255px;
 
   /* border-radius: 8px; */
   border: none;
@@ -60,16 +60,16 @@ export const TitleHeader = styled.div`
 
   color: #333;
   text-align: center;
-  font-weight: 700;
-  font-size: 51px;
-  line-height: 70px;
-  letter-spacing: 2.5px;
+  font-weight: 600;
+  font-size: 53px;
+  line-height: 72px;
+  letter-spacing: 1px;
 `;
 
 export const SubTitle = styled.div`
   color: #4ab1bd;
   font-weight: 300;
-  font-size: 26px;
+  font-size: 25.5px;
   margin-bottom: -5px;
   letter-spacing: 0px;
 `;
@@ -106,7 +106,7 @@ export const CenterArea = styled.div`
 
 export const Section1 = styled.div`
   position: relative;
-  height: 2000px;
+  height: 1720px;
 
   display: flex;
   flex-direction: column;
@@ -142,25 +142,25 @@ export const Thumbnail = styled.img`
 `;
 
 export const Article1 = styled.div`
-  width: 30%;
+  width: 31%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
+  gap: 14px;
 `;
 
 export const Article1Title = styled.div`
-  font-size: 25px;
+  font-size: 26.5px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #444;
+  letter-spacing: 0.3px;
+  color: #474748;
 `;
 
 export const Article1Content = styled.div`
-  font-size: 17.5px;
+  font-size: 19.5px;
   font-weight: 200;
   color: #444;
-  letter-spacing: 0.2px;
+  letter-spacing: 0px;
 `;
 
 export const Article1Btn = styled.div`
@@ -181,7 +181,7 @@ export const Article1Btn = styled.div`
 
 export const Section2 = styled.div`
   position: relative;
-  height: 410px;
+  height: 400px;
   background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
@@ -231,16 +231,16 @@ export const Section2Btn = styled.div`
 `;
 
 export const Footer = styled.div`
-  height: 320px;
+  height: 330px;
   padding: 0 12%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 400;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   color: #777;
 
   line-height: 24px;
@@ -249,7 +249,7 @@ export const Footer = styled.div`
 export const FooterColumn = styled.div``;
 
 export const NinewattLogo = styled.img`
-  height: 70px;
+  height: 66px;
   margin-bottom: 40px;
 `;
 
@@ -260,28 +260,28 @@ export const FooterTable = styled.div`
 
 export const FooterTableHeader = styled.div`
   display: flex;
-  font-weight: 600;
-  gap: 40px;
+  font-weight: 500;
+  gap: 35px;
 `;
 
 export const FooterTableRow = styled.div`
-  padding-top: 6px;
+  padding-top: 9px;
   display: flex;
-  padding-left: 75px;
+  padding-left: 74px;
   text-align: center;
   color: #aaa;
 `;
 
 export const FooterNav = styled.div`
-  height: 60px;
-  padding: 0 10%;
+  height: 50px;
+  padding: 0 12%;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #ddd;
 
-  font-size: 15.5px;
-  font-weight: 500;
-  letter-spacing: -1px;
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
   color: #aaa;
 `;
 
@@ -289,7 +289,6 @@ export const FooterNavBtns = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
-  padding-bottom: 4px;
 `;
 
 export const HeaderBtmNav = styled.div`
@@ -302,7 +301,7 @@ export const HeaderBtmNavArea = styled.div`
   position: absolute;
   margin-top: -195px;
   height: 280px;
-  width: 70%;
+  width: 74%;
   left: 12.3%;
   border-radius: 40px;
   box-shadow: 0 25px 50px -20px rgb(0 0 0 / 0.1);
@@ -311,7 +310,7 @@ export const HeaderBtmNavArea = styled.div`
 
   display: flex;
   justify-content: center;
-  padding: 0 3%;
+  padding: 0 1%;
 `;
 
 export const HeaderBtmNavTitle = styled.div`
@@ -321,7 +320,7 @@ export const HeaderBtmNavTitle = styled.div`
   justify-content: center;
   align-items: center;
 
-  color: #666;
+  color: #555;
   font-size: 32px;
   font-weight: 700;
   line-height: 48px;
@@ -338,20 +337,20 @@ export const HeaderBtmLogo = styled.img`
 `;
 
 export const HeaderBtmNavColumn = styled.div`
-  width: 18%;
-  padding: 0 40px;
+  width: 22%;
+  padding: 0 30px;
   display: flex;
   flex-direction: column;
-  padding-top: 6%;
+  padding-top: 5%;
   justify-content: start;
   align-items: center;
-  gap: 50px;
+  gap: 46px;
 
   color: #777;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   font-weight: 500;
 `;
 
