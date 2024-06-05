@@ -34,6 +34,10 @@ import {
   HeaderBtmLogo,
   HeaderBtmNavColumn,
   HeaderBtmNavColumnDivider,
+  LanguagePopupWrapper,
+  LanguagePopupBox,
+  LanguagePopupItem,
+  TitleText,
 } from "./WattiPage.style";
 import Logo from "../assets/watti_logo.png";
 import Exam1 from "../assets/watti_exam1.png";
@@ -41,7 +45,7 @@ import Exam2 from "../assets/watti_exam2.png";
 import Exam3 from "../assets/watti_exam3.png";
 import Logo2 from "../assets/ninewatt_logo.png";
 import Logo3 from "../assets/watti_grey_logo.png";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const CheckSvg = () => {
   return (
@@ -60,14 +64,14 @@ const CheckSvg = () => {
 const WattiPage = () => {
   const [activeStep, setActiveStep] = useState("step1");
   const [isTop, setIsTop] = useState(true);
-  const stepRefs = {
-    step1: useRef(null),
-    step2: useRef(null),
-  };
-  const articles = [useRef(null), useRef(null), useRef(null)];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stepRefs = { step1: useRef(null), step2: useRef(null) };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const articles = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
   const [lastArticle, setLastArticle] = useState(0);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const steps = ["step1", "step2"];
     const currentScroll = document.documentElement.scrollTop;
     setIsTop(currentScroll === 0);
@@ -80,22 +84,23 @@ const WattiPage = () => {
       }
     }
 
-    for (let i = articles.length - 1; i >= 0; i--) {
+    console.log(`${currentScroll} ${articles[0].current.getBoundingClientRect()}`)
+    if (currentScroll < articles[0].current.getBoundingClientRect()  + (window.innerWidth / window.innerHeight) * 300) {
+      setLastArticle(0);
+      return;
+    }
+    for (let i = lastArticle; i < articles.length; i++) {
       if (currentScroll >= articles[i].current.offsetTop + (window.innerWidth / window.innerHeight) * 300) {
-        setLastArticle(i + 1);
+        setLastArticle(i);
         break;
       }
     }
-    if (currentScroll < articles[0].current.offsetTop + (window.innerWidth / window.innerHeight) * 300) {
-      setLastArticle(0);
-    }
-  };
+  }, [lastArticle, articles, stepRefs]);
 
   useEffect(() => {
-    if (window) window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [handleScroll]);
 
   const handleNavClick = (stepId) => {
     const currentStep = stepRefs[stepId].current;
@@ -107,6 +112,13 @@ const WattiPage = () => {
 
   return (
     <Body>
+      <LanguagePopupWrapper onClick={() => setIsOpenPopup(false)} style={isOpenPopup ? {} : { display: "none" }}>
+        <LanguagePopupBox>
+          <LanguagePopupItem>EN</LanguagePopupItem>
+          <LanguagePopupItem>JP</LanguagePopupItem>
+          <LanguagePopupItem>KR</LanguagePopupItem>
+        </LanguagePopupBox>
+      </LanguagePopupWrapper>
       <TopNav style={isTop ? { backgroundColor: "#e4e4e4" } : { backgroundColor: "white" }}>
         <WattiLogo src={Logo} alt="" />
         <NavRow>
@@ -116,7 +128,7 @@ const WattiPage = () => {
           <div style={activeStep === "step2" ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step2")}>
             Case studies
           </div>
-          <div>Language</div>
+          <div onClick={() => setIsOpenPopup(true)}>Language</div>
         </NavRow>
       </TopNav>
       <TitleBg />
@@ -124,9 +136,9 @@ const WattiPage = () => {
         <CenterArea>
           <TitleHeader>
             <SubTitle>WE ALWAYS LIVE THE CITY</SubTitle>
-            <div>
+            <TitleText>
               3D Map-Based Urban Building <br /> Energy Analysis Platform
-            </div>
+            </TitleText>
             <div style={{ height: "102px" }} />
             <Btn onClick={() => handleNavClick("step2")}>
               <div>Check the case studies</div>
@@ -158,7 +170,7 @@ const WattiPage = () => {
             <div>Recommend appropriate types of renovations and their expected benefits, and connect them with local renovation contractors.</div>
           </HeaderBtmNavColumn>
         </HeaderBtmNavArea>
-        <HeaderBtmNavTitle>
+        <HeaderBtmNavTitle ref={articles[0]} isVisible={lastArticle > 1}>
           Feasibility Evaluation and Implementation Support <br />
           for Sustainable Energy Solutions.
         </HeaderBtmNavTitle>
@@ -166,8 +178,10 @@ const WattiPage = () => {
       </HeaderBtmNav>
 
       <Section1 ref={stepRefs["step2"]}>
-        <Section1Title>Watti's case studies</Section1Title>
-        <Section1Row ref={articles[0]} isVisible={lastArticle > 0}>
+        <Section1Title ref={articles[1]} isVisible={lastArticle > 2}>
+          Watti's case studies
+        </Section1Title>
+        <Section1Row ref={articles[2]} isVisible={lastArticle > 3}>
           <Thumbnail src={Exam2} alt="" />
           <Article1>
             <Article1Title>watti in Gangnam-gu</Article1Title>
@@ -181,7 +195,7 @@ const WattiPage = () => {
             </Article1Btn>
           </Article1>
         </Section1Row>
-        <Section1Row ref={articles[1]} isVisible={lastArticle > 1}>
+        <Section1Row ref={articles[3]} isVisible={lastArticle > 4}>
           <Article1>
             <Article1Title>watti in Paris</Article1Title>
             <Article1Content>
@@ -196,7 +210,7 @@ const WattiPage = () => {
           </Article1>
           <Thumbnail src={Exam1} alt="" />
         </Section1Row>
-        <Section1Row ref={articles[2]} isVisible={lastArticle > 2}>
+        <Section1Row ref={articles[4]} isVisible={lastArticle > 5}>
           <Thumbnail src={Exam3} alt="" />
           <Article1>
             <Article1Title>watti in Seoul</Article1Title>

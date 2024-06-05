@@ -75,6 +75,11 @@ export const Btn = styled.div`
   &:hover {
     gap: 18px;
   }
+
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: forwards;
 `;
 
 export const TitleHeader = styled.div`
@@ -91,12 +96,23 @@ export const TitleHeader = styled.div`
   letter-spacing: 1px;
 `;
 
+export const TitleText = styled.div`
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+`;
+
 export const SubTitle = styled.div`
   color: #4ab1bd;
   font-weight: 300;
   font-size: 25.5px;
   margin-bottom: -5px;
   letter-spacing: 0px;
+
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out;
+  animation-fill-mode: forwards;
 `;
 
 export const TitleBg = styled.div`
@@ -152,8 +168,8 @@ export const Section1Row = styled.div`
   /* gap: 40px; */
 
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(50px)')};
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 0.5s ease-out;
+  transform: ${({ isVisible }) => (isVisible ? "translateY(0)" : "translateY(50px)")};
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.5s ease-out;
 `;
 
 export const Thumbnail = styled.img`
@@ -361,6 +377,11 @@ export const HeaderBtmNavArea = styled.div`
   display: flex;
   justify-content: center;
   padding: 0 1%;
+
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out;
+  animation-delay: 0.6s;
+  animation-fill-mode: forwards;
 `;
 
 export const HeaderBtmNavTitle = styled.div`
@@ -416,4 +437,45 @@ export const HeaderBtmNavColumnDivider = styled.div`
   width: 0.5px;
   height: 130px;
   background-color: #ccc;
+`;
+
+export const LanguagePopupWrapper = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+`;
+
+export const LanguagePopupBox = styled.div`
+  position: fixed;
+  top: 60px;
+  right: calc(12% + 2px);
+
+  height: 130px;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 20px 30px -20px rgb(0 0 0 / 0.5);
+`;
+
+export const LanguagePopupItem = styled.div`
+  width: 100%;
+  padding: 8.5px 0;
+
+  color: #555;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0px;
+
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #11111111;
+  }
 `;
