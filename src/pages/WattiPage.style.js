@@ -1,6 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import backgroundImage from "../assets/background.jpeg";
 // import ContactBg from "../assets/contact_us_bg.png";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Body = styled.div`
   width: 100%;
@@ -40,11 +51,11 @@ export const NavRow = styled.div`
 
 export const Btn = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   height: 60px;
-  width: 255px;
+  width: 238px;
+  padding-left: 35px;
 
   /* border-radius: 8px; */
   border: none;
@@ -56,6 +67,14 @@ export const Btn = styled.div`
 
   user-select: none;
   cursor: pointer;
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+
+  &:hover {
+    gap: 18px;
+  }
 `;
 
 export const TitleHeader = styled.div`
@@ -96,7 +115,7 @@ export const TitleArea = styled.div`
   height: 905px;
   position: relative;
   padding: 20px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const CenterArea = styled.div`
@@ -131,6 +150,10 @@ export const Section1Row = styled.div`
   display: flex;
   justify-content: space-evenly;
   /* gap: 40px; */
+
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(50px)')};
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 0.5s ease-out;
 `;
 
 export const Thumbnail = styled.img`
@@ -165,9 +188,10 @@ export const Article1Content = styled.div`
 `;
 
 export const Article1Btn = styled.div`
+  position: relative;
   margin-top: 20px;
   height: 58px;
-  width: 220px;
+  width: 210px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -178,6 +202,16 @@ export const Article1Btn = styled.div`
   border: 1px solid #ccc;
 
   cursor: pointer;
+
+  background: linear-gradient(to right, #999 0%, #999 50%, transparent 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 400ms ease-out, color 400ms ease-out;
+
+  &:hover {
+    color: white;
+    background-position: left;
+  }
 `;
 
 export const Section2 = styled.div`
@@ -194,7 +228,7 @@ export const Section2 = styled.div`
   gap: 30px;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -222,14 +256,26 @@ export const Section2Btn = styled.a`
   align-items: center;
   gap: 15px;
   z-index: 1;
-  
-  font-size: 16px;
+
+  font-size: 17px;
   font-weight: 500;
   color: white;
   border: 1px solid white;
-  
+
   cursor: pointer;
   text-decoration-line: none;
+
+  background-color: transparent;
+  transition: background-color 300ms ease-out;
+
+  &:hover {
+    color: #00a0ad;
+    background-color: white;
+
+    & svg path {
+      stroke: #00a0ad;
+    }
+  }
 `;
 
 export const Footer = styled.div`
@@ -345,10 +391,10 @@ export const HeaderBtmNavColumn = styled.div`
   padding: 0 30px;
   display: flex;
   flex-direction: column;
-  padding-top: 5%;
+  padding-top: 5.5%;
   justify-content: start;
   align-items: center;
-  gap: 46px;
+  gap: 44px;
 
   color: #777;
   text-align: center;
@@ -356,6 +402,13 @@ export const HeaderBtmNavColumn = styled.div`
   line-height: 20px;
   letter-spacing: -0.3px;
   font-weight: 500;
+
+  cursor: pointer;
+  transition: padding-top 300ms ease-out;
+
+  &:hover {
+    padding-top: 4%;
+  }
 `;
 
 export const HeaderBtmNavColumnDivider = styled.div`

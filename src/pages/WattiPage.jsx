@@ -64,6 +64,8 @@ const WattiPage = () => {
     step1: useRef(null),
     step2: useRef(null),
   };
+  const articles = [useRef(null), useRef(null), useRef(null)];
+  const [lastArticle, setLastArticle] = useState(0);
 
   const handleScroll = () => {
     const steps = ["step1", "step2"];
@@ -73,10 +75,19 @@ const WattiPage = () => {
     for (let i = steps.length - 1; i >= 0; i--) {
       const step = stepRefs[steps[i]].current;
       if (currentScroll >= step.offsetTop) {
-        console.log(steps[i]);
         setActiveStep(steps[i]);
         break;
       }
+    }
+
+    for (let i = articles.length - 1; i >= 0; i--) {
+      if (currentScroll >= articles[i].current.offsetTop + (window.innerWidth / window.innerHeight) * 300) {
+        setLastArticle(i + 1);
+        break;
+      }
+    }
+    if (currentScroll < articles[0].current.offsetTop + (window.innerWidth / window.innerHeight) * 300) {
+      setLastArticle(0);
     }
   };
 
@@ -90,14 +101,13 @@ const WattiPage = () => {
     const currentStep = stepRefs[stepId].current;
     const firstStep = stepRefs["step1"].current;
     if (currentStep) {
-      console.log(currentStep.offsetTop - firstStep.offsetTop);
       window.scrollTo({ top: currentStep.offsetTop - firstStep.offsetTop, behavior: "smooth" });
     }
   };
 
   return (
     <Body>
-      <TopNav style={isTop ? {backgroundColor: "#e4e4e4"} : {backgroundColor: "white"}}>
+      <TopNav style={isTop ? { backgroundColor: "#e4e4e4" } : { backgroundColor: "white" }}>
         <WattiLogo src={Logo} alt="" />
         <NavRow>
           <div style={activeStep === "step1" ? { color: "#599eab", fontWeight: "800" } : {}} onClick={() => handleNavClick("step1")}>
@@ -120,7 +130,7 @@ const WattiPage = () => {
             <div style={{ height: "102px" }} />
             <Btn onClick={() => handleNavClick("step2")}>
               <div>Check the case studies</div>
-              <div style={{ marginTop: "3px" }}>→</div>
+              <div>→</div>
             </Btn>
           </TitleHeader>
         </CenterArea>
@@ -157,7 +167,7 @@ const WattiPage = () => {
 
       <Section1 ref={stepRefs["step2"]}>
         <Section1Title>Watti's case studies</Section1Title>
-        <Section1Row>
+        <Section1Row ref={articles[0]} isVisible={lastArticle > 0}>
           <Thumbnail src={Exam2} alt="" />
           <Article1>
             <Article1Title>watti in Gangnam-gu</Article1Title>
@@ -171,7 +181,7 @@ const WattiPage = () => {
             </Article1Btn>
           </Article1>
         </Section1Row>
-        <Section1Row>
+        <Section1Row ref={articles[1]} isVisible={lastArticle > 1}>
           <Article1>
             <Article1Title>watti in Paris</Article1Title>
             <Article1Content>
@@ -186,7 +196,7 @@ const WattiPage = () => {
           </Article1>
           <Thumbnail src={Exam1} alt="" />
         </Section1Row>
-        <Section1Row>
+        <Section1Row ref={articles[2]} isVisible={lastArticle > 2}>
           <Thumbnail src={Exam3} alt="" />
           <Article1>
             <Article1Title>watti in Seoul</Article1Title>
