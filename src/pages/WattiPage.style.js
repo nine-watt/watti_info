@@ -5,11 +5,42 @@ import backgroundImage from "../assets/background.jpeg";
 const fadeIn = keyframes`
   from {
     opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeInMoveUp = keyframes`
+  from {
+    opacity: 0;
     transform: translateY(50px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+`;
+
+const fadeInMoveR = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const fadeInMoveL = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 `;
 
@@ -77,7 +108,7 @@ export const Btn = styled.div`
   }
 
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out;
+  animation: ${fadeInMoveUp} 0.5s ease-out;
   animation-delay: 0.4s;
   animation-fill-mode: forwards;
 `;
@@ -98,7 +129,7 @@ export const TitleHeader = styled.div`
 
 export const TitleText = styled.div`
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out;
+  animation: ${fadeInMoveUp} 0.5s ease-out;
   animation-delay: 0.2s;
   animation-fill-mode: forwards;
 `;
@@ -111,7 +142,7 @@ export const SubTitle = styled.div`
   letter-spacing: 0px;
 
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out;
+  animation: ${fadeInMoveUp} 0.5s ease-out;
   animation-fill-mode: forwards;
 `;
 
@@ -158,6 +189,11 @@ export const Section1Title = styled.div`
   color: #444;
   font-weight: 700;
   /* letter-spacing: -0.2px; */
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
 `;
 
 export const Section1Row = styled.div`
@@ -166,10 +202,6 @@ export const Section1Row = styled.div`
   display: flex;
   justify-content: space-evenly;
   /* gap: 40px; */
-
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  transform: ${({ isVisible }) => (isVisible ? "translateY(0)" : "translateY(50px)")};
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.5s ease-out;
 `;
 
 export const Thumbnail = styled.img`
@@ -179,6 +211,10 @@ export const Thumbnail = styled.img`
 
   border-radius: 12px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transform: ${({ isVisible }) => (isVisible ? "translateY(0)" : "translateY(50px)")};
+  animation: ${({ isVisible, reverse = false }) => (isVisible ? (reverse ? fadeInMoveL : fadeInMoveR) : "none")} 0.5s ease-out;
 `;
 
 export const Article1 = styled.div`
@@ -187,6 +223,10 @@ export const Article1 = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 14px;
+
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transform: ${({ isVisible }) => (isVisible ? "translateY(0)" : "translateY(50px)")};
+  animation: ${({ isVisible }) => (isVisible ? fadeInMoveUp : "none")} 0.5s ease-out;
 `;
 
 export const Article1Title = styled.div`
@@ -253,6 +293,11 @@ export const Section2 = styled.div`
     background-color: rgba(0, 0, 0, 0.25); // 어두운 배경색
     z-index: 0; // PIXI 애플리케이션 위에 배치
   }
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeInMoveUp : "none")} 0.5s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: forwards;
 `;
 
 export const Section2Title = styled.div`
@@ -379,12 +424,12 @@ export const HeaderBtmNavArea = styled.div`
   padding: 0 1%;
 
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out;
+  animation: ${fadeInMoveUp} 0.5s ease-out;
   animation-delay: 0.6s;
   animation-fill-mode: forwards;
 `;
 
-export const HeaderBtmNavTitle = styled.div`
+export const HeaderBtmNavTitleArea = styled.div`
   height: 100%;
   padding-top: 55px;
   display: flex;
@@ -397,6 +442,18 @@ export const HeaderBtmNavTitle = styled.div`
   line-height: 48px;
   letter-spacing: 1px;
   text-align: center;
+
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+`;
+
+export const HeaderBtmNavTitle = styled.div`
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.5s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: forwards;
 `;
 
 export const HeaderBtmLogo = styled.img`

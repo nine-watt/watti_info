@@ -38,6 +38,7 @@ import {
   LanguagePopupBox,
   LanguagePopupItem,
   TitleText,
+  HeaderBtmNavTitleArea,
 } from "./WattiPage.style";
 import Logo from "../assets/watti_logo.png";
 import Exam1 from "../assets/watti_exam1.png";
@@ -67,8 +68,8 @@ const WattiPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const stepRefs = { step1: useRef(null), step2: useRef(null) };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const articles = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-  const [lastArticle, setLastArticle] = useState(0);
+  const articles = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [lastArticle, setLastArticle] = useState(-1);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
 
   const handleScroll = useCallback(() => {
@@ -84,13 +85,9 @@ const WattiPage = () => {
       }
     }
 
-    console.log(`${currentScroll} ${articles[0].current.getBoundingClientRect()}`)
-    if (currentScroll < articles[0].current.getBoundingClientRect()  + (window.innerWidth / window.innerHeight) * 300) {
-      setLastArticle(0);
-      return;
-    }
-    for (let i = lastArticle; i < articles.length; i++) {
-      if (currentScroll >= articles[i].current.offsetTop + (window.innerWidth / window.innerHeight) * 300) {
+    for (let i = lastArticle + 1; i < articles.length; i++) {
+      if (0 > articles[i].current.getBoundingClientRect().top - window.innerHeight) {
+        console.log(i);
         setLastArticle(i);
         break;
       }
@@ -99,6 +96,7 @@ const WattiPage = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
@@ -170,20 +168,22 @@ const WattiPage = () => {
             <div>Recommend appropriate types of renovations and their expected benefits, and connect them with local renovation contractors.</div>
           </HeaderBtmNavColumn>
         </HeaderBtmNavArea>
-        <HeaderBtmNavTitle ref={articles[0]} isVisible={lastArticle > 1}>
-          Feasibility Evaluation and Implementation Support <br />
-          for Sustainable Energy Solutions.
-        </HeaderBtmNavTitle>
+        <HeaderBtmNavTitleArea>
+          <HeaderBtmNavTitle ref={articles[0]} isVisible={lastArticle >= 0}>
+            Feasibility Evaluation and Implementation Support <br />
+            for Sustainable Energy Solutions.
+          </HeaderBtmNavTitle>
+        </HeaderBtmNavTitleArea>
         <HeaderBtmLogo src={Logo3} alt="" />
       </HeaderBtmNav>
 
       <Section1 ref={stepRefs["step2"]}>
-        <Section1Title ref={articles[1]} isVisible={lastArticle > 2}>
+        <Section1Title ref={articles[1]} isVisible={lastArticle >= 1}>
           Watti's case studies
         </Section1Title>
-        <Section1Row ref={articles[2]} isVisible={lastArticle > 3}>
-          <Thumbnail src={Exam2} alt="" />
-          <Article1>
+        <Section1Row ref={articles[2]}>
+          <Thumbnail src={Exam2} alt="" isVisible={lastArticle >= 2} />
+          <Article1 isVisible={lastArticle >= 2}>
             <Article1Title>watti in Gangnam-gu</Article1Title>
             <Article1Content>
               The platform visualizes building energy use and CO2 emissions, offering emission rankings and comparisons across Seoul. It aids Gangnam District's
@@ -195,8 +195,8 @@ const WattiPage = () => {
             </Article1Btn>
           </Article1>
         </Section1Row>
-        <Section1Row ref={articles[3]} isVisible={lastArticle > 4}>
-          <Article1>
+        <Section1Row ref={articles[3]}>
+          <Article1 isVisible={lastArticle >= 3}>
             <Article1Title>watti in Paris</Article1Title>
             <Article1Content>
               Using data and simulations, we provide energy renovation scenarios and assess building energy efficiency to aid in decision-making for
@@ -208,11 +208,11 @@ const WattiPage = () => {
               <div>→</div>
             </Article1Btn>
           </Article1>
-          <Thumbnail src={Exam1} alt="" />
+          <Thumbnail src={Exam1} alt="" isVisible={lastArticle >= 3} reverse={true} />
         </Section1Row>
-        <Section1Row ref={articles[4]} isVisible={lastArticle > 5}>
-          <Thumbnail src={Exam3} alt="" />
-          <Article1>
+        <Section1Row ref={articles[4]}>
+          <Thumbnail src={Exam3} alt="" isVisible={lastArticle >= 4} />
+          <Article1 isVisible={lastArticle >= 4}>
             <Article1Title>watti in Seoul</Article1Title>
             <Article1Content>
               Wattie's Seoul prototype visualizes monthly electricity and gas consumption, identifies buildings with low energy efficiency for green remodeling
@@ -225,7 +225,7 @@ const WattiPage = () => {
           </Article1>
         </Section1Row>
       </Section1>
-      <Section2>
+      <Section2 ref={articles[5]} isVisible={lastArticle >= 5}>
         <Section2Title>CONTACT US</Section2Title>
         <Section2Btn href="mailto:ninewatt@ninewatt.com">
           <div>E-mail</div>
