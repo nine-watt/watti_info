@@ -293,11 +293,6 @@ export const Section2 = styled.div`
     background-color: rgba(0, 0, 0, 0.25); // 어두운 배경색
     z-index: 0; // PIXI 애플리케이션 위에 배치
   }
-
-  opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeInMoveUp : "none")} 0.5s ease-out;
-  animation-delay: 0.4s;
-  animation-fill-mode: forwards;
 `;
 
 export const Section2Title = styled.div`
@@ -306,6 +301,11 @@ export const Section2Title = styled.div`
   font-weight: 700;
   letter-spacing: 0px;
   z-index: 1;
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeInMoveUp : "none")} 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
 `;
 
 export const Section2Btn = styled.a`
@@ -337,6 +337,11 @@ export const Section2Btn = styled.a`
       stroke: #00a0ad;
     }
   }
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeInMoveUp : "none")} 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
 `;
 
 export const Footer = styled.div`

@@ -225,9 +225,9 @@ const WattiPage = () => {
           </Article1>
         </Section1Row>
       </Section1>
-      <Section2 ref={articles[5]} isVisible={lastArticle >= 5}>
-        <Section2Title>CONTACT US</Section2Title>
-        <Section2Btn href="mailto:ninewatt@ninewatt.com">
+      <Section2 ref={articles[5]}>
+        <Section2Title isVisible={lastArticle >= 5}>CONTACT US</Section2Title>
+        <Section2Btn href="mailto:ninewatt@ninewatt.com" isVisible={lastArticle >= 5}>
           <div>E-mail</div>
           <div style={{ marginTop: "4px" }}>
             <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
