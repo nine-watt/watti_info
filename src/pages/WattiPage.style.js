@@ -513,9 +513,8 @@ export const LanguagePopupBox = styled.div`
   position: fixed;
   top: 60px;
   right: calc(12% + 2px);
+  padding: 6px 11px;
 
-  height: 130px;
-  width: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -527,13 +526,13 @@ export const LanguagePopupBox = styled.div`
 `;
 
 export const LanguagePopupItem = styled.div`
-  width: 100%;
-  padding: 8.5px 0;
+  padding: 10px 10px;
 
   color: #555;
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0px;
+  border-radius: 8px;
 
   text-align: center;
   cursor: pointer;

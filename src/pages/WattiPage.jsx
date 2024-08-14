@@ -113,8 +113,8 @@ const WattiPage = () => {
       <LanguagePopupWrapper onClick={() => setIsOpenPopup(false)} style={isOpenPopup ? {} : { display: "none" }}>
         <LanguagePopupBox>
           <LanguagePopupItem>EN</LanguagePopupItem>
-          <LanguagePopupItem>JP</LanguagePopupItem>
-          <LanguagePopupItem>KR</LanguagePopupItem>
+          {/* <LanguagePopupItem>JP</LanguagePopupItem>
+          <LanguagePopupItem>KR</LanguagePopupItem> */}
         </LanguagePopupBox>
       </LanguagePopupWrapper>
       <TopNav style={isTop ? { backgroundColor: "#e4e4e4" } : { backgroundColor: "white" }}>
