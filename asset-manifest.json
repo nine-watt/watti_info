@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/watti_info/static/css/main.142623d5.css",
-    "main.js": "/watti_info/static/js/main.ab6e984a.js",
+    "main.js": "/watti_info/static/js/main.24696ee1.js",
     "static/js/453.8b8ad433.chunk.js": "/watti_info/static/js/453.8b8ad433.chunk.js",
     "static/media/watti_exam2.png": "/watti_info/static/media/watti_exam2.1d44e83341e5b81c997f.png",
     "static/media/watti_exam1.png": "/watti_info/static/media/watti_exam1.30563079cb04183e2555.png",
@@ -9,11 +9,11 @@
     "static/media/watti_exam3.png": "/watti_info/static/media/watti_exam3.66a55976c07d51a5fed3.png",
     "index.html": "/watti_info/index.html",
     "main.142623d5.css.map": "/watti_info/static/css/main.142623d5.css.map",
-    "main.ab6e984a.js.map": "/watti_info/static/js/main.ab6e984a.js.map",
+    "main.24696ee1.js.map": "/watti_info/static/js/main.24696ee1.js.map",
     "453.8b8ad433.chunk.js.map": "/watti_info/static/js/453.8b8ad433.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.142623d5.css",
-    "static/js/main.ab6e984a.js"
+    "static/js/main.24696ee1.js"
   ]
 }
