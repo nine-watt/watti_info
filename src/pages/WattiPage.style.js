@@ -243,7 +243,7 @@ export const Article1Content = styled.div`
   letter-spacing: 0px;
 `;
 
-export const Article1Btn = styled.div`
+export const Article1Btn = styled.a`
   position: relative;
   margin-top: 20px;
   height: 58px;
@@ -263,6 +263,7 @@ export const Article1Btn = styled.div`
   background-size: 200% 100%;
   background-position: right;
   transition: background-position 400ms ease-out, color 400ms ease-out;
+  text-decoration-line: none;
 
   &:hover {
     color: white;

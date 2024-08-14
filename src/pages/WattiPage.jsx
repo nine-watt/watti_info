@@ -189,8 +189,9 @@ const WattiPage = () => {
               The platform visualizes building energy use and CO2 emissions, offering emission rankings and comparisons across Seoul. It aids Gangnam District's
               carbon neutrality and green remodeling efforts, promoting community sustainability.
             </Article1Content>
-            <Article1Btn onClick={() => window.open("https://watti-gangnam.r-e.kr/map")}>
-              <div>Check this case</div>
+            {/* <Article1Btn onClick={() => window.open("https://watti-gangnam.r-e.kr/map")}> */}
+            <Article1Btn href="mailto:ninewatt@ninewatt.com" >
+              <div>Related Inquiries</div>
               <div>→</div>
             </Article1Btn>
           </Article1>
@@ -203,8 +204,9 @@ const WattiPage = () => {
               renovations. This approach facilitates partnerships with renovation experts, enabling effective renovations that reduce greenhouse gas emissions
               and lower energy costs.
             </Article1Content>
-            <Article1Btn onClick={() => window.open("https://greenplanner-paris.kro.kr/")}>
-              <div>Check this case</div>
+            {/* <Article1Btn onClick={() => window.open("https://greenplanner-paris.kro.kr/")}> */}
+            <Article1Btn href="mailto:ninewatt@ninewatt.com" >
+              <div>Related Inquiries</div>
               <div>→</div>
             </Article1Btn>
           </Article1>
@@ -218,8 +220,9 @@ const WattiPage = () => {
               Wattie's Seoul prototype visualizes monthly electricity and gas consumption, identifies buildings with low energy efficiency for green remodeling
               prioritization, and presents comprehensive energy metrics on a 3D map, supported by advanced analysis tools.
             </Article1Content>
-            <Article1Btn onClick={() => window.open("https://wattissl3.kro.kr/map/130")}>
-              <div>Check this case</div>
+            {/* <Article1Btn onClick={() => window.open("https://wattissl3.kro.kr/map/130")}> */}
+            <Article1Btn href="mailto:ninewatt@ninewatt.com" >
+              <div>Related Inquiries</div>
               <div>→</div>
             </Article1Btn>
           </Article1>
